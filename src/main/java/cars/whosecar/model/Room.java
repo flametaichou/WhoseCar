@@ -35,8 +35,8 @@ public class Room {
     public List<Car> getCars() {
         return cars;
     }
-    public void setCars(List<Car> phone) {
-        this.cars = phone;
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
     @Override
     public String toString() {

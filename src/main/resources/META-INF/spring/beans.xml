@@ -7,7 +7,7 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <property name="url" value="jdbc:postgresql://host:3000/test_db" />
+        <property name="url" value="jdbc:postgresql://host:3000/cars_db" />
         <property name="username" value="pgsql" />
         <property name="password" value="***" />
     </bean>
@@ -30,7 +30,13 @@
             </props>
         </property>
     </bean>
+
     <bean id="roomDAO" class="cars.whosecar.dao.RoomDaoImpl">
         <property name="sessionFactory" ref="hibernateSessionFactory" />
     </bean>
+
+    <bean id="carDAO" class="cars.whosecar.dao.CarDaoImpl">
+        <property name="sessionFactory" ref="hibernateSessionFactory" />
+    </bean>
+
 </beans>
