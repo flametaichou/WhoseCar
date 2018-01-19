@@ -1,0 +1,26 @@
+html {
+    background: #469AB9;
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll!important;
+}
+.header {
+    height: 100px;
+    background: #404040;
+.gif {
+    width: 40%;
+    padding: 10px;
+    margin: auto;
+    background: #000000
+}
+.error {
+    width: 65%; /* Ширина элемента в пикселах */
+    margin: auto; /* Выравниваем по центру */
+    text-shadow: 1px 1px 2px black, 0 0 1em black; /* Параметры тени */
+    color: white; /* Белый цвет текста */
+    font-size: 2em; /* Размер надписи */
+}
+.empty-height {
+    min-height: 50px;
+    height: 75px;
+}

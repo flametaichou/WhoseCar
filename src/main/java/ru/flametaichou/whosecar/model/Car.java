@@ -1,12 +1,13 @@
-package cars.whosecar.model;
+package ru.flametaichou.whosecar.model;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "CARS")
 public class Car {
     @Id
-    @Column(name="id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String carNumber;
     private String carBrand;
@@ -15,21 +16,29 @@ public class Car {
     public Car() {
         super();
     }
-    public Car(String carNumber) {
+
+    public Car(String carNumber, String carBrand, String carColor) {
         this.carNumber = carNumber;
+        this.carBrand = carBrand;
+        this.carColor = carColor;
     }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getCarNumber() {
         return carNumber;
     }
+
     public void setCarNumber(String carNumber) {
         this.carNumber = carNumber;
     }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -55,4 +64,5 @@ public class Car {
     public void setCarColor(String carColor) {
         this.carColor = carColor;
     }
+
 }

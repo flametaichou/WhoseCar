@@ -1,9 +1,9 @@
-package cars.whosecar.dao;
+package ru.flametaichou.whosecar.dao;
 
-import cars.whosecar.model.Car;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import ru.flametaichou.whosecar.model.Car;
 
 import java.util.List;
 
@@ -22,6 +22,15 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
+    public void delete(Car car) {
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.delete(car);
+        tx.commit();
+        session.close();
+    }
+
+    @Override
     public List<Car> getCarsList() {
         Session session = this.sessionFactory.openSession();
         String hql = "from Car";
@@ -31,12 +40,13 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public List<Car> getCarsByNumber(String n) {
+    public Car getCarByNumber(String n) {
         Session session = this.sessionFactory.openSession();
         String hql = "from Car where carNumber = :Number";
         List<Car> carsList = session.createQuery(hql).setString("Number", n).list();
+        Car car = carsList.get(0);
         session.close();
-        return carsList;
+        return car;
     }
 
     @Override

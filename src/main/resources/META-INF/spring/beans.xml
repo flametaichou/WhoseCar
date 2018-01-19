@@ -5,20 +5,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://host:3000/cars_db" />
         <property name="username" value="pgsql" />
         <property name="password" value="***" />
     </bean>
+
     <!-- Hibernate 4 SessionFactory Bean definition -->
     <bean id="hibernateSessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="annotatedClasses">
             <list>
-                <value>cars.whosecar.model.Room</value>
-                <value>cars.whosecar.model.Car</value>
+                <value>ru.flametaichou.whosecar.model.Room</value>
+                <value>ru.flametaichou.whosecar.model.Car</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -31,12 +33,18 @@
         </property>
     </bean>
 
-    <bean id="roomDAO" class="cars.whosecar.dao.RoomDaoImpl">
+    <bean id="roomDAO" class="ru.flametaichou.whosecar.dao.RoomDaoImpl">
         <property name="sessionFactory" ref="hibernateSessionFactory" />
     </bean>
 
-    <bean id="carDAO" class="cars.whosecar.dao.CarDaoImpl">
+    <bean id="carDAO" class="ru.flametaichou.whosecar.dao.CarDaoImpl">
         <property name="sessionFactory" ref="hibernateSessionFactory" />
     </bean>
+
+    <!--
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase">
+        <property name="changeLog" value="classpath:/resources/db/changelog/db.changelog-master.xml" />
+    </bean>
+    -->
 
 </beans>

@@ -1,0 +1,52 @@
+package ru.flametaichou.whosecar.main;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.flametaichou.whosecar.dao.CarDao;
+import ru.flametaichou.whosecar.dao.RoomDao;
+import ru.flametaichou.whosecar.model.Car;
+import ru.flametaichou.whosecar.model.Room;
+
+public class RoomsCarsDatabase {
+
+    private static ClassPathXmlApplicationContext context;
+    private static RoomDao roomDAO;
+    private static CarDao carDAO;
+
+    public RoomsCarsDatabase() {
+        context = new ClassPathXmlApplicationContext("META-INF/spring/beans.xml");
+        roomDAO = context.getBean(RoomDao.class);
+        carDAO = context.getBean(CarDao.class);
+    }
+
+    public static void close() {
+        context.close();
+    }
+
+    public static void createRoom(int roomNumber) {
+        Room room = new Room(roomNumber);
+        roomDAO.save(room);
+    }
+
+    public static void createCar(String carNumber, String carBrand, String carColor) {
+        Car car = new Car(carNumber,carBrand, carColor);
+        carDAO.save(car);
+    }
+
+    public static void addCarToRoomByNumbers(int roomNumber, String carNumber) {
+        roomDAO.addCarByNumber(roomNumber,carNumber);
+    }
+
+    public static void removeCarFromRoom(int roomNumber, String carNumber) {
+        roomDAO.removeCarByNumber(roomNumber,carNumber);
+    }
+
+    public static void deleteCarByNumber(String carNumber) {
+        Car car = carDAO.getCarByNumber(carNumber);
+        carDAO.delete(car);
+    }
+
+    public static void deleteRoomByNumber(int roomNumber) {
+        Room room = roomDAO.getRoomByNumber(roomNumber);
+        roomDAO.delete(room);
+    }
+}

@@ -1,4 +1,4 @@
-package cars.whosecar.model;
+package ru.flametaichou.whosecar.model;
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,10 +16,16 @@ public class Room {
     public Room() {
         super();
     }
-    public Room(int roomNumber, List<Car> phone) {
+
+    public Room(int roomNumber) {
         this.roomNumber = roomNumber;
-        this.cars = phone;
     }
+
+    public Room(int roomNumber, List<Car> cars) {
+        this.roomNumber = roomNumber;
+        this.cars = cars;
+    }
+
     public Long getId() {
         return id;
     }

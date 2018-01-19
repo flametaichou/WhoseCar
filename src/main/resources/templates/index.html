@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<link href="/css/index.css" rel="stylesheet" />-->
+    <style>
+    html {
+        background: #469AB9;
+    }
+    body {
+        margin: 0px;
+    }
+    .header {
+        height: 70px;
+        width: 100%;
+        background: #404040;
+        color: white;
+    }
+    .logo {
+        font-size: 250%;
+        padding: 10px;
+    }
+    .text {
+        font-size: 150%;
+        padding: 5px;
+    }
+    .search {
+        width: 60%;
+        padding: 10px;
+        padding-top: 15%;
+        margin: auto;
+    }
+    </style>
+</head>
+<body>
+<div class="header">
+    <label class="logo">WhoseAuto</label>
+</div>
+<center>
+    <div class="search">
+        <label class="text">Введите номер машины:<br/></label>
+        <input type="text" id="carNumber" size="50%"/>
+
+        <form action="/results" method="post">
+            <input type="submit" value="Submit" />
+        </form>
+
+    </div>
+</center>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <preConditions>
+        <runningAs username="pgsql"/>
+    </preConditions>
+
+    <changeSet id="5" author="flametaichou">
+
+        <createTable tableName="ROOMS">
+            <column name="ID" type="bigint" autoIncrement="true">
+                <constraints nullable="true" primaryKey="true"/>
+            </column>
+            <column name="ROOMNUMBER" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="ROOMS" indexName="IDX_ROOMS__FULL">
+            <column name="ROOMNUMBER"/>
+        </createIndex>
+
+        <createTable tableName="CARS">
+            <column name="ID" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="CARNUMBER" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CARBRAND" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CARCOLOR" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="CARS" indexName="IDX_CARS__FULL">
+            <column name="CARNUMBER"/>
+            <column name="CARBRAND"/>
+            <column name="CARCOLOR"/>
+        </createIndex>
+
+        <createTable tableName="ROOMS_CARS">
+            <column name="ROOMS_ID" type="bigint">
+                <constraints references="ROOMS(ID)" foreignKeyName="RC_rooms" nullable="true" unique="false"/>
+            </column>
+            <column name="CARS_ID" type="bigint">
+                <constraints references="CARS(ID)" foreignKeyName="RC_cars" nullable="false" unique="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
