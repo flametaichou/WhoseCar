@@ -12,6 +12,9 @@ public class Car {
     private String carNumber;
     private String carBrand;
     private String carColor;
+    @ManyToOne
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    private Room room;
 
     public Car() {
         super();
@@ -65,4 +68,11 @@ public class Car {
         this.carColor = carColor;
     }
 
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 }

@@ -38,6 +38,9 @@
             <column name="CARCOLOR" type="text">
                 <constraints nullable="false"/>
             </column>
+            <column name="ROOM_ID" type="bigint">
+                <constraints references="ROOMS(ID)" foreignKeyName="C_rooms" nullable="true" unique="false"/>
+            </column>
         </createTable>
         <createIndex tableName="CARS" indexName="IDX_CARS__FULL">
             <column name="CARNUMBER"/>
