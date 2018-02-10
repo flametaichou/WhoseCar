@@ -8,13 +8,13 @@ import ru.flametaichou.whosecar.model.Room;
 
 import java.util.List;
 
-public class RoomsCarsDatabase {
+public class DatabaseController {
 
     private static ClassPathXmlApplicationContext context;
     private static RoomDao roomDAO;
     private static CarDao carDAO;
 
-    public RoomsCarsDatabase() {
+    public DatabaseController() {
         context = new ClassPathXmlApplicationContext("META-INF/spring/beans.xml");
         roomDAO = context.getBean(RoomDao.class);
         carDAO = context.getBean(CarDao.class);
@@ -54,11 +54,23 @@ public class RoomsCarsDatabase {
         roomDAO.delete(room);
     }
 
+
     public static List<Car> showRoomCars(int roomNumber) {
         return roomDAO.getRoomByNumber(roomNumber).getCars();
     }
 
+
     public static Room showCarRoom(String carNumber) {
         return carDAO.getCarByNumber(carNumber).getRoom();
     }
+
+    public static List<Car> showCarsByNumber(String carNumber) {
+        return carDAO.getCarsByNumber(carNumber);
+    }
+
+    public static List<Car> getAllCars() {
+        return carDAO.getCarsList();
+    }
+
+    public static Car getCarById(long id) { return carDAO.getCarById(id); }
 }

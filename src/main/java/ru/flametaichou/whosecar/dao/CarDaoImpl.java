@@ -51,6 +51,24 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
+    public List<Car> getCarsByNumber(String n) {
+        Session session = this.sessionFactory.openSession();
+        String hql = "from Car where carNumber = :Number";
+        List<Car> cars = session.createQuery(hql).setString("Number", n).list();
+        session.close();
+        return cars;
+    }
+
+    @Override
+    public List<Car> getCarsByRoomNumber(String n) {
+        Session session = this.sessionFactory.openSession();
+        String hql = "from Car where carNumber = :Number";
+        List<Car> cars = session.createQuery(hql).setString("Number", n).list();
+        session.close();
+        return cars;
+    }
+
+    @Override
     public Car getCarById(Long car_id) {
         Session session = this.sessionFactory.openSession();
         Car car = (Car) session.get(Car.class, car_id);

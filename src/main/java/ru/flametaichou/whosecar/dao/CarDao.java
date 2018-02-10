@@ -10,6 +10,8 @@ public interface CarDao {
     public void delete(Car c);
     public List<Car> getCarsList();
     public Car getCarByNumber(String n);
+    public List<Car> getCarsByNumber(String n);
+    public List<Car> getCarsByRoomNumber(String n);
     public Car getCarById(Long car_id);
     public void addRoom(String carNumber, Room room);
     public void addRoomByNumber(String carNumber, int roomNumber);

@@ -1,4 +1,6 @@
 package ru.flametaichou.whosecar.model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,8 +14,9 @@ public class Car {
     private String carNumber;
     private String carBrand;
     private String carColor;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id", referencedColumnName = "id")
+    @JsonIgnoreProperties("cars")
     private Room room;
 
     public Car() {

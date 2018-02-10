@@ -11,7 +11,9 @@ public interface RoomDao {
     public List<Room> getRoomsList();
     public Room getRoomByNumber(int n);
     public Room getRoomById(Long car_id);
+
     public void addCar(int roomNumber, Car car);
     public void addCarByNumber(int roomNumber, String carNumber);
     public void removeCarByNumber(int roomNumber, String carNumber);
+
 }

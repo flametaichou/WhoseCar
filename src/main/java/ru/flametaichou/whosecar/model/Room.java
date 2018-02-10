@@ -1,4 +1,6 @@
 package ru.flametaichou.whosecar.model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,7 +12,8 @@ public class Room {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private int roomNumber;
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "room")
+    @JsonIgnoreProperties("room")
     private List<Car> cars;
 
     public Room() {
@@ -49,7 +52,6 @@ public class Room {
         return "Room{" +
                 "id=" + id +
                 ", roomNumber='" + roomNumber + '\'' +
-                ", cars=" + cars +
                 '}';
     }
 }
